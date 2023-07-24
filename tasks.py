@@ -67,7 +67,7 @@ class NyTimesScraper:
             
             raise ValueError("An error occurred during search the phrase.") from err
 
-    def sort_newest(self):  
+    def sort_news_by_newest(self):  
         try:
             button_xpath = "//select[@class='css-v7it2b']"
             self.browser_lib.click_element_when_visible(button_xpath)
@@ -287,7 +287,7 @@ def main():
         scraper.search(phrase=search_phrase)
         scraper.close_cookies()
         
-        scraper.sort_newest()
+        scraper.sort_news_by_newest()
 
         scraper.filter_sections(section_list=sections)
         
