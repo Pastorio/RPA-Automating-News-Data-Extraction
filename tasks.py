@@ -39,7 +39,7 @@ class NyTimesScraper:
         except Exception as err:
             logger.warn(f"Failed to close policy terms, error: {err:}")
 
-    def search(self, phrase):
+    def search(self, phrase: str):
         try:
             div_search_xpath = "xpath://div[@class='css-qo6pn ea180rp0']"
             self.browser_lib.wait_until_element_is_visible(div_search_xpath)
@@ -77,7 +77,7 @@ class NyTimesScraper:
         except Exception as err:
             logger.warn(f"Failed to sort by newst, error: {err:}")
     
-    def filter_sections(self, section_list):
+    def filter_sections(self, section_list: list):
         try:
             button_xpath = "xpath://div[@data-testid='section']//button[@type='button']"
             self.browser_lib.wait_until_element_is_enabled(button_xpath)
@@ -103,7 +103,7 @@ class NyTimesScraper:
         except Exception as err:
             logger.warn(f"Failed to select sections, error: {err:}")
 
-    def calculate_month_diff_from_link(self, url):
+    def calculate_month_diff_from_link(self, url: str):
         '''Calculate the difference in months from news to actual date'''
         date_pattern = r'\d{4}/\d{2}/\d{2}'
         match = re.search(date_pattern, url)
@@ -162,7 +162,7 @@ class NyTimesScraper:
                 
         
             
-    def count_phrase_in_text(self, phrase, text):
+    def count_phrase_in_text(self, phrase: str, text: str) -> int:
         '''Counte the number of times a specific phrase appears in a text'''
         lowercase_phrase = phrase.lower()
         lowercase_text = text.lower()
@@ -172,7 +172,7 @@ class NyTimesScraper:
         return count
     
 
-    def get_news_information(self, phrase, num_months=1):
+    def get_news_information(self, phrase: str, num_months=1):
         self.browser_lib.wait_until_element_is_visible("class:css-1l4w6pd")
         elements = self.browser_lib.get_webelements("class:css-1l4w6pd")
         
@@ -228,7 +228,7 @@ class NyTimesScraper:
                 logger.warn(f"Failed to get news: {str(err)}")
                 
     
-    def save_news_image(self, path):
+    def save_news_image(self, path: str):
         url_query = self.browser_lib.get_location()
         i = 0
         try:
@@ -246,7 +246,7 @@ class NyTimesScraper:
         except Exception as err:
                 logger.warn(f"Failed to save images: {str(err)}") 
                 
-    def save_information_in_excel(self, path):
+    def save_information_in_excel(self, path: str):
         try:
             lib = Files()
             
@@ -258,8 +258,8 @@ class NyTimesScraper:
         except Exception as err:
                 logger.warn(f"Failed to save excel informations: {str(err)}") 
         
-    def store_screenshot(self, filename):
-        self.browser_lib.screenshot(filename=filename)
+    def store_screenshot(self, path):
+        self.browser_lib.screenshot(filename=path)
     
     def finish_execution(self):
         self.browser_lib.close_all_browsers()
