@@ -15,8 +15,8 @@ class NyTimesScraper:
         self.news_information = []
     
     def open_the_website(self, url: str):
-        self.browser_lib.open_browser(url, browser="edge")
-        # self.browser_lib.open_available_browser(url)
+        # self.browser_lib.open_browser(url, browser="edge")
+        self.browser_lib.open_available_browser(url)
     
     def close_policy_terms(self):
         button_xpath = "xpath://button[normalize-space()='Continue']"
