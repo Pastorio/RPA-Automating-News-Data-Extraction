@@ -1,0 +1,12 @@
+[
+  {
+      "payload": {
+         "search_phrase": "Brazil",
+         "sections": ["Travel", "World", "Arts"],
+         "months": 1
+      },
+      "files": {
+          "orders.xlsx": "orders.xlsx"
+      }
+  }
+]
